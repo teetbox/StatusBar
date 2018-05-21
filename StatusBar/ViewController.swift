@@ -124,17 +124,34 @@ extension ViewController: UIScrollViewDelegate {
         if offSetY > 50 {
             UIView.animate(withDuration: 0.4) {
                 self.naviView.alpha = 1
-                self.naviTitle.textColor = .black
-                self.nextButton.setTitleColor(.black, for: .normal)
                 self.navigationController?.darkStatusBar()
             }
+            
+            guard naviTitle.textColor == .white else { return }
+            UIView.transition(with: naviTitle, duration: 0.4, options: .transitionCrossDissolve, animations: {
+                self.naviTitle.textColor = .black
+            })
+            
+            guard nextButton.titleColor(for: .normal) == .white else { return }
+            UIView.transition(with: nextButton, duration: 0.4, options: .transitionCrossDissolve, animations: {
+                self.nextButton.setTitleColor(.black, for: .normal)
+            })
+            
         } else {
             UIView.animate(withDuration: 0.4) {
                 self.naviView.alpha = 0
-                self.naviTitle.textColor = .white
-                self.nextButton.setTitleColor(.white, for: .normal)
                 self.navigationController?.lightStatusBar()
             }
+            
+            guard naviTitle.textColor == .black else { return }
+            UIView.transition(with: naviTitle, duration: 0.4, options: .transitionCrossDissolve, animations: {
+                self.naviTitle.textColor = .white
+            })
+            
+            guard nextButton.titleColor(for: .normal) == .black else { return }
+            UIView.transition(with: nextButton, duration: 0.4, options: .transitionCrossDissolve, animations: {
+                self.nextButton.setTitleColor(.white, for: .normal)
+            })
         }
     }
     
