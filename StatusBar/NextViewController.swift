@@ -14,6 +14,16 @@ class NextViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.fromHEX(string: "#ABCDEF")
+        
+        let gesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(fromGesture:)))
+        view.addGestureRecognizer(gesture)
+        
+//        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+    }
+    
+    @objc func handleSwipe(fromGesture gesture: UISwipeGestureRecognizer) {
+        // Only detected right swipe
+        navigationController?.popViewController(animated: true)
     }
     
 }
